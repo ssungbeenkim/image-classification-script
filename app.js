@@ -11,13 +11,12 @@ if (!folder || !fs.existsSync(workingDir)) {
 
 const videoDir = path.join(workingDir, 'video');
 const capturedDir = path.join(workingDir, 'captured');
-const duplicatedDir = path.join(workingDir, 'duplicated'); // path 만들기
+const duplicatedDir = path.join(workingDir, 'duplicated');
 !fs.existsSync(videoDir) && fs.mkdirSync(videoDir);
 !fs.existsSync(capturedDir) && fs.mkdirSync(capturedDir);
-!fs.existsSync(duplicatedDir) && fs.mkdirSync(duplicatedDir); // 만든 path로 디렉토리 생성
+!fs.existsSync(duplicatedDir) && fs.mkdirSync(duplicatedDir);
 
 fs.promises.readdir(workingDir).then(processFiles).catch(console.error);
-// readdir로 배열의 형태로 파일 이름들을 받아온다.
 
 function processFiles(files) {
   files.forEach((file) => {
@@ -32,12 +31,12 @@ function processFiles(files) {
 }
 
 function isVideoFile(file) {
-  const regExp = /(mp4|mov)$/gm;
+  const regExp = /(mp4|mov)$/gim;
   const match = file.match(regExp);
   return !!match;
 }
 function isCapturedFile(file) {
-  const regExp = /(png|aae)$/gm;
+  const regExp = /(png|aae)$/gim;
   const match = file.match(regExp);
   return !!match;
 }
